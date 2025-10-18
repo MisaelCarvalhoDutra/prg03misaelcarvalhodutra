@@ -1,39 +1,59 @@
 package br.com.ifba.atividade08;
 
+import java.time.LocalDateTime;
+
 public class Usuario {
     
-    //aqui os atributos todos privados
-    private int id;
-    private String nome;
+    // aqui os atributos todos privados
+    private Long id;
+    private String nomeUsuario; // nome do usuário
     private String email;
     private String senha;
-    private PerfilUsuario perfil; //está associado com PerfilUsuario, ou seja, o relacionamento entre classes
+    private PerfilUsuario perfil; // está associado com PerfilUsuario, ou seja, o relacionamento entre classes
+    
+    private LocalDateTime ultimoLogin;
+    private Boolean ativo;
 
-    // aqui o método construtor
-    public Usuario(int id, String nome, String email, String senha, PerfilUsuario perfil) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.perfil = perfil;
+    // construtor padrão aqui
+    public Usuario() {  
+        
     }
 
-    // aqui os métodos getters e setters (encapsulamento
+    // aqui o método construtor completo
+    public Usuario(Long id, PerfilUsuario perfil, String nomeUsuario, String email, String senha, LocalDateTime ultimoLogin, Boolean ativo) {
+        this.id = id;
+        this.perfil = perfil;
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
+        this.ultimoLogin = ultimoLogin;
+        this.ativo = ativo;
+    }
+
+    // aqui os métodos getters e setters (encapsulamento)
     
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public PerfilUsuario getPerfil() {
+        return perfil;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setPerfil(PerfilUsuario perfil) {
+        this.perfil = perfil;
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     public String getEmail() {
@@ -52,29 +72,32 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public PerfilUsuario getPerfil() {
-        return perfil;
+    public LocalDateTime getUltimoLogin() {
+        return ultimoLogin;
     }
 
-    public void setPerfil(PerfilUsuario perfil) {
-        this.perfil = perfil;
+    public void setUltimoLogin(LocalDateTime ultimoLogin) {
+        this.ultimoLogin = ultimoLogin;
     }
 
-    // Método para mostrar as informações do usuário.
-    // Ele faz o acesso ao nome do perfil de dentro do objeto PerfilUsuario
-    public void exibirUsuario() {
-        System.out.println("ID: " + id 
-                           + ", Nome: " + nome 
-                           + ", Email: " + email 
-                           + ", Perfil: " + perfil.getNomePerfil());
+    public Boolean getAtivo() {
+        return ativo;
     }
 
-    // vai sobrescrever o método toString para imprimir de forma mais direta
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+
+    // vai sobrescrever o método toString para imprimir de forma mais organizado
+ 
     @Override
     public String toString() {
         return "Usuario [ID = " + id 
-               + ", Nome = " + nome 
+               + ", Nome = " + nomeUsuario 
                + ", Email = " + email 
-               + ", Perfil = " + perfil.getNomePerfil() + "]";
+               + ", Perfil = " + perfil.getDescricao() + "]";
     }
+
+  
 }
